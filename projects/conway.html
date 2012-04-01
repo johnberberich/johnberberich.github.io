@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Conway's Game of Life</title>
+<script type="text/javascript">
+var grid;
+var width, height;
+
+var gameInit = function() {
+	// Set up some basic start states.  It's important here
+	// that we add a one-cell, zero-value border around the
+	// intended grid; this simplifies the update logic.
+	var blinker = [[0, 0, 0, 0, 0, 0, 0],
+				   [0, 0, 0, 0, 0, 0, 0],
+				   [0, 0, 0, 1, 0, 0, 0],
+				   [0, 0, 0, 1, 0, 0, 0],
+				   [0, 0, 0, 1, 0, 0, 0],
+				   [0, 0, 0, 0, 0, 0, 0],
+				   [0, 0, 0, 0, 0, 0, 0]];
+
+	var beacon = [[0, 0, 0, 0, 0, 0, 0, 0],
+				  [0, 0, 0, 0, 0, 0, 0, 0],
+				  [0, 0, 1, 1, 0, 0, 0, 0],
+				  [0, 0, 1, 0, 0, 0, 0, 0],
+				  [0, 0, 0, 0, 0, 1, 0, 0],
+				  [0, 0, 0, 0, 1, 1, 0, 0],
+				  [0, 0, 0, 0, 0, 0, 0, 0],
+				  [0, 0, 0, 0, 0, 0, 0, 0]];
+
+	var misc = [[0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 1, 1, 0, 0, 0, 0],
+				[0, 0, 1, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 1, 0, 0],
+				[0, 0, 1, 0, 1, 1, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0]];
+
+	grid = blinker;
+	width = grid.length - 2;
+	height = grid[0].length - 2;
+
+	/*var canvas = document.getElementById('canvas');
+	if(canvas.getContext){
+		var ctx = canvas.getContext('2d');
+		render = renderGfxMode;
+	} else {
+		render = renderTextMode;
+	}*/
+	renderTextMode();  // Render the initial state.
+	gameLoop();  // Start the game loop.
+}
+
+var gameLoop = function() {
+	update();
+	renderTextMode();
+	var t = setTimeout("gameLoop();", 500);
+}
+
+var renderTextMode = function() {
+	var text = '';
+	var x, y;
+	for(y = 1; y < height+1; y++) {
+		for(x = 1; x < width+1; x++) {
+			text += grid[y][x] > 0 ? 'X ' : '  ';
+		}
+		text += '\n';
+	}
+	document.getElementById('text').innerHTML = text;
+}
+
+var renderGfxMode = function(ctx) {
+	//todo
+}
+
+var update = function() {
+	var x, y;
+	var newgrid = new Array();
+	newgrid.push([0, 0, 0, 0, 0]);
+	for(y = 1; y < height+1; y++) {
+		newgrid[y] = new Array();
+		newgrid[y].push(0);
+		for(x = 1; x < width+1; x++) {
+			newgrid[y][x] = isCellAlive(x, y);
+		}
+		newgrid[y].push(0);
+	}
+	newgrid.push([0, 0, 0, 0, 0]);
+	delete grid;
+	grid = newgrid;
+}
+
+var isCellAlive = function(x, y) {
+	var wasAlive = grid[y][x];
+	numLivingNeighbors = countLivingNeighbors(x, y);
+	if(wasAlive) {
+		if(numLivingNeighbors == 2 || numLivingNeighbors == 3)
+			return 1;
+		return 0;  // died by under- or over- population
+		// dead cell
+	}
+	if(numLivingNeighbors == 3)
+		return 1;  // alive via reproduction
+	return 0;
+}
+
+var countLivingNeighbors = function(x, y) {
+	return grid[y-1][x-1] + grid[y-1][x] + grid[y-1][x+1]
+		 + grid[y][x-1]                  + grid[y][x+1]
+		 + grid[y+1][x-1] + grid[y+1][x] + grid[y+1][x+1];
+}
+
+</script>
+<style type="text/css">
+	canvas{
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body onload="gameInit();">
+<h1>Conway's Game of Life</h1>
+<h2>Rules</h2>
+<ol>
+	<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+	<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+	<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+	<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+
+<h2>Text</h2>
+<pre id="text"></pre>
+
+<h2>Canvas</h2>
+<canvas id="canvas" class="gameboard" width="150" height="150">
+	Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+</canvas>
+</body>
+</html>
