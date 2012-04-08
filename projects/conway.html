@@ -6,37 +6,39 @@
 var grid;
 var width, height;
 
+var isRunning = false;
+
+// Here we have some basic start states.  It's important
+// that we add a one-cell, zero-value border around the
+// intended grid; this simplifies the update logic.
+var blinker = [[0, 0, 0, 0, 0, 0, 0],
+			   [0, 0, 0, 0, 0, 0, 0],
+			   [0, 0, 0, 1, 0, 0, 0],
+			   [0, 0, 0, 1, 0, 0, 0],
+			   [0, 0, 0, 1, 0, 0, 0],
+			   [0, 0, 0, 0, 0, 0, 0],
+			   [0, 0, 0, 0, 0, 0, 0]];
+
+var beacon = [[0, 0, 0, 0, 0, 0, 0, 0],
+			  [0, 0, 0, 0, 0, 0, 0, 0],
+			  [0, 0, 1, 1, 0, 0, 0, 0],
+			  [0, 0, 1, 0, 0, 0, 0, 0],
+			  [0, 0, 0, 0, 0, 1, 0, 0],
+			  [0, 0, 0, 0, 1, 1, 0, 0],
+			  [0, 0, 0, 0, 0, 0, 0, 0],
+			  [0, 0, 0, 0, 0, 0, 0, 0]];
+			  
+var misc = [[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 1, 1, 0, 0, 0, 0],
+			[0, 0, 1, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 1, 0, 0],
+			[0, 0, 1, 0, 1, 1, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0]];
+
 var gameInit = function() {
-	// Set up some basic start states.  It's important here
-	// that we add a one-cell, zero-value border around the
-	// intended grid; this simplifies the update logic.
-	var blinker = [[0, 0, 0, 0, 0, 0, 0],
-				   [0, 0, 0, 0, 0, 0, 0],
-				   [0, 0, 0, 1, 0, 0, 0],
-				   [0, 0, 0, 1, 0, 0, 0],
-				   [0, 0, 0, 1, 0, 0, 0],
-				   [0, 0, 0, 0, 0, 0, 0],
-				   [0, 0, 0, 0, 0, 0, 0]];
-
-	var beacon = [[0, 0, 0, 0, 0, 0, 0, 0],
-				  [0, 0, 0, 0, 0, 0, 0, 0],
-				  [0, 0, 1, 1, 0, 0, 0, 0],
-				  [0, 0, 1, 0, 0, 0, 0, 0],
-				  [0, 0, 0, 0, 0, 1, 0, 0],
-				  [0, 0, 0, 0, 1, 1, 0, 0],
-				  [0, 0, 0, 0, 0, 0, 0, 0],
-				  [0, 0, 0, 0, 0, 0, 0, 0]];
-
-	var misc = [[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 1, 1, 0, 0, 0, 0],
-				[0, 0, 1, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 1, 0, 0],
-				[0, 0, 1, 0, 1, 1, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0]];
-
-	grid = blinker;
+	grid = misc;
 	width = grid.length - 2;
 	height = grid[0].length - 2;
 
@@ -47,16 +49,30 @@ var gameInit = function() {
 	} else {
 		render = renderTextMode;
 	}*/
-	renderTextMode();  // Render the initial state.
-	gameLoop();  // Start the game loop.
+	render();  // Render the initial state.
 }
-
-var gameLoop = function() {
+var gameStep = function() {
 	update();
-	renderTextMode();
-	var t = setTimeout("gameLoop();", 500);
+	render();
+}
+var gameLoop = function() {
+	if(isRunning) {
+		gameStep();
+		setTimeout("gameLoop();", 500);
+	}
+}
+var gameToggle = function() {
+	isRunning = !isRunning;
+	if(isRunning)
+		gameLoop();
+}
+var gameReset = function() {
+	gameInit();
 }
 
+var render = function() {
+	renderTextMode();
+}
 var renderTextMode = function() {
 	var text = '';
 	var x, y;
@@ -68,7 +84,6 @@ var renderTextMode = function() {
 	}
 	document.getElementById('text').innerHTML = text;
 }
-
 var renderGfxMode = function(ctx) {
 	//todo
 }
@@ -112,8 +127,38 @@ var countLivingNeighbors = function(x, y) {
 
 </script>
 <style type="text/css">
-	canvas{
+	canvas, pre { /* Reset these guys. */
+		margin: 0px;
+		padding: 0px;
+	}
+	.gameboard {
+		float: left;
+		padding: 10px;
+		margin-right: 20px;
 		border: 1px solid black;
+	}
+	.gameboard pre {
+		width: 150px;
+		height: 150px;
+		text-align: center;
+		/*TODO: worry about vertical alignment later */
+		border: 2px solid red;
+	}
+	.gameboard canvas {
+		border: 2px solid blue;
+		margin-bottom: -6px;  /* For some reason, the canvas renders with a little bottom margin. */
+	}
+	#webgl {
+		border: 2px solid green;
+	}
+	#controls {
+		float: left;
+		overflow: auto;
+		width: 100%;
+		padding-bottom: 20px;
+	}
+	#controls button {
+		width: 100px;
 	}
 </style>
 </head>
@@ -127,12 +172,28 @@ var countLivingNeighbors = function(x, y) {
 	<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
 </ol>
 
-<h2>Text</h2>
-<pre id="text"></pre>
+<h2>The game in action</h2>
+<div id="controls">
+	<button type="button" onclick="gameStep();">Step</button>
+	<button type="button" onclick="gameToggle();">Start/Stop</button>
+	<button type="buttom" onclick="gameReset();">Reset</button>
+</div>
 
-<h2>Canvas</h2>
-<canvas id="canvas" class="gameboard" width="150" height="150">
-	Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
-</canvas>
+<div class="gameboard">
+	<h3>Text</h3>
+	<pre id="text"></pre>
+</div>
+<div class="gameboard">
+	<h3>Canvas</h3>
+	<canvas id="canvas" width="150" height="150">
+		Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+	</canvas>
+</div>
+<div class="gameboard">
+	<h3>WebGL</h3>
+	<canvas id="webgl" width="150" height="150">
+		Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+	</canvas>
+</div>
 </body>
 </html>
