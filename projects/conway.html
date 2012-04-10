@@ -6,6 +6,8 @@
 var grid;
 var width, height;
 
+var ctx;
+
 var isRunning = false;
 
 // Here we have some basic start states.  It's important
@@ -38,17 +40,15 @@ var misc = [[0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0, 0, 0, 0, 0, 0, 0]];
 
 var gameInit = function() {
-	grid = misc;
+	grid = blinker;
 	width = grid.length - 2;
 	height = grid[0].length - 2;
 
-	/*var canvas = document.getElementById('canvas');
+	var canvas = document.getElementById('canvas');
 	if(canvas.getContext){
-		var ctx = canvas.getContext('2d');
-		render = renderGfxMode;
-	} else {
-		render = renderTextMode;
-	}*/
+		ctx = canvas.getContext('2d');
+	}
+	
 	render();  // Render the initial state.
 }
 var gameStep = function() {
@@ -72,6 +72,8 @@ var gameReset = function() {
 
 var render = function() {
 	renderTextMode();
+	if(ctx)
+		renderGfxMode();
 }
 var renderTextMode = function() {
 	var text = '';
@@ -84,8 +86,21 @@ var renderTextMode = function() {
 	}
 	document.getElementById('text').innerHTML = text;
 }
-var renderGfxMode = function(ctx) {
-	//todo
+var pi2 = Math.PI * 2;
+var renderGfxMode = function() {
+	var r = 25;   // radius of a cell
+	var d = r*2;  // and the diameter (for calc purposes)
+	var x, y;
+	for(y = 0; y < height; y++) {
+		for(x = 0; x < width; x++) {
+			ctx.beginPath();
+			ctx.arc(x*d+r, y*d+r, r, 0, pi2, false);
+			if(grid[y+1][x+1] > 0)
+				ctx.fill();
+			else
+				ctx.stroke();
+		}
+	}
 }
 
 var update = function() {
