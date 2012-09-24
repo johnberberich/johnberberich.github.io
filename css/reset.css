@@ -1,4 +1,8 @@
-/* Resets by E. Meyers */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,23 +46,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-
-
-/* used in /index.html, commenting so i can work with blog css
-#masthead h1 {
-	display: inline;
-}
-#masthead h1 a {
-	color: rgb(66,66,66);
-	text-decoration: none;
-}
-#toolbar li {
-	display: inline;
-	border: 1px solid;
-	border-color: #f3f3f3 #bbb #bbb #f3f3f3;
-	margin: 0;
-	padding: .5em;
-	zoom: 1;
-}
-*/
