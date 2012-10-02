@@ -54,9 +54,7 @@ body {
 a {
 	text-decoration: none;
 	color: rgb(100,100,100);
-}
-a:hover {
-	border-bottom: 1px rgb(100,100,100) dashed;
+	border-bottom: 1px rgb(100,100,100) dotted;
 }
 em {
 	font-style: italic;
