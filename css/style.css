@@ -1,4 +1,6 @@
-/* Resets by E. Meyers */
+/*******************************/
+/***   Resets by E. Meyers   ***/
+/*******************************/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,22 +45,52 @@ table {
 	border-spacing: 0;
 }
 
-
-
-/* used in /index.html, commenting so i can work with blog css
-#masthead h1 {
-	display: inline;
+/************************/
+/***   Styles by me   ***/
+/************************/
+body {
+	font-family: sans-serif;	
 }
-#masthead h1 a {
-	color: rgb(66,66,66);
+a {
+	text-decoration: none;
+	color: rgb(100,100,100);
+}
+a:hover {
+	border-bottom: 1px rgb(100,100,100) dashed;
+}
+em {
+	font-style: italic;
+}
+#container {
+	position: relative;
+	margin: 0px auto;
+	width: 35em;
+}
+#masthead {
+	padding-top: 3em;
+	height: 5em;
+}
+#masthead a {
 	text-decoration: none;
 }
-#toolbar li {
-	display: inline;
-	border: 1px solid;
-	border-color: #f3f3f3 #bbb #bbb #f3f3f3;
-	margin: 0;
-	padding: .5em;
-	zoom: 1;
+#masthead h1 {
+	font-size: 1.6em;
+	font-weight: bold;
+	color: rgb(0,0,0);
 }
-*/
+#masthead h2 {
+	font-size: 0.9em;
+	color: rgb(100,100,100);
+}
+.content {
+	line-height: 1.4em;
+	border-top: 1px rgb(100,100,100) dotted;
+	border-bottom: 1px rgb(100,100,100) dotted;
+	padding-top: 2em;
+}
+.content p {
+	margin-bottom: 2em;
+}
+footer {
+	padding-top: 2em;
+}
