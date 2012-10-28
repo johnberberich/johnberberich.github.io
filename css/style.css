@@ -1,94 +1,50 @@
-/*******************************/
-/***   Resets by E. Meyers   ***/
-/*******************************/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
 body {
-	line-height: 1;
+	font: 100 100% Helvetica, Arial, sans-serif;
+	color: rgb(50,50,50);
+	line-height: 1.5em;
+	width: 100%;
 }
-ol, ul {
-	list-style: none;
+h1 {
+	font-weight: bold;
+	font-size: 1.5em;
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/************************/
-/***   Styles by me   ***/
-/************************/
-body {
-	font-family: sans-serif;	
+h2 {
+	font-weight: bold;
+	font-size: 1.2em;
 }
 a {
-	text-decoration: none;
 	color: rgb(100,100,100);
-	border-bottom: 1px rgb(100,100,100) dotted;
 }
 em {
 	font-style: italic;
 }
-#container {
-	position: relative;
-	margin: 0px auto;
-	width: 35em;
+#page {
+	padding: 0 2em;
 }
 #masthead {
-	padding-top: 3em;
-	height: 5em;
+	padding: 3em 0 1.2em;
+	border-bottom: 1px rgb(100,100,100) dotted;
+}
+#masthead h1 {
+	font-size: 2em;
 }
 #masthead a {
 	text-decoration: none;
-}
-#masthead h1 {
-	font-size: 1.6em;
-	font-weight: bold;
-	color: rgb(0,0,0);
-}
-#masthead h2 {
-	font-size: 0.9em;
-	color: rgb(100,100,100);
+	color: rgb(50,50,50);
 }
 .content {
-	line-height: 1.4em;
-	border-top: 1px rgb(100,100,100) dotted;
-	border-bottom: 1px rgb(100,100,100) dotted;
-	padding-top: 2em;
+	margin-top: 1.2em;
 }
 .content p {
-	margin-bottom: 2em;
+	margin-bottom: 1.2em;
+}
+.content h2 {
+	margin: 2em 0 .8em;
 }
 footer {
-	padding-top: 2em;
+	padding: 1.2em 0 3em;
+	border-top: 1px rgb(100,100,100) dotted;
+}
+.copyright {
+	font-size: .9em;
 }
