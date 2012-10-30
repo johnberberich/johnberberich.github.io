@@ -4,27 +4,15 @@
 	<meta charset="UTF-8">
 	<title>Grid - Projects - John Berberich</title>
 	<style type="text/css">
-		body {
-			border: 1px solid black;
-		}
 		canvas {
-			margin: 0px;
-			padding: 0px;
+			margin: 0;
+			padding: 0;
 		}
 		#gameboard {
-			display: inline;
 			float: left;
-			padding: 10px;
-			border: 1px solid black;
-		}
-		#gameboard canvas {
-			/*border: 2px solid blue;*/
-			margin-bottom: -6px;  /* For some reason, the canvas renders with a little bottom margin. */
 		}
 		#controls {
 			float: right;
-			display: block;
-			border: 1px solid black;
 		}
 		#controls button {
 			display: block;
@@ -36,8 +24,8 @@
 	<div id="controls">
 		<button type="button" onclick="clearDemo();">Clear</button>
 		<button type="button" onclick="randomizeDemo();">Randomize</button>
-		<button type="button" onclick="log('Count Shapes');">Count Shapes</button>
-		<button type="button" onclick="log('Conway');">Conway's Step</button>
+		<button type="button" onclick="log('Count');">Count</button>
+		<button type="button" onclick="log('Simulate');">Simulate</button>
 	</div>
 	<div id="gameboard">
 		<canvas id="canvas" width="300" height="300">
