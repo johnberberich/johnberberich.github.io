@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Grid - Projects - John Berberich</title>
+	<style type="text/css">
+		body {
+			border: 1px solid black;
+		}
+		canvas {
+			margin: 0px;
+			padding: 0px;
+		}
+		#gameboard {
+			display: inline;
+			float: left;
+			padding: 10px;
+			border: 1px solid black;
+		}
+		#gameboard canvas {
+			/*border: 2px solid blue;*/
+			margin-bottom: -6px;  /* For some reason, the canvas renders with a little bottom margin. */
+		}
+		#controls {
+			float: right;
+			display: block;
+			border: 1px solid black;
+		}
+		#controls button {
+			display: block;
+			width: 100%;
+		}
+</style>
+</head>
+<body>
+	<div id="controls">
+		<button type="button" onclick="clearDemo();">Clear</button>
+		<button type="button" onclick="randomizeDemo();">Randomize</button>
+		<button type="button" onclick="log('Count Shapes');">Count Shapes</button>
+		<button type="button" onclick="log('Conway');">Conway's Step</button>
+	</div>
+	<div id="gameboard">
+		<canvas id="canvas" width="300" height="300">
+			Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+		</canvas>
+	</div>
+	<script type="text/javascript">
+		var log = function(msg) {
+			console.log(msg);
+		}
+		var autorun = function() {
+			var canvas = document.getElementById('canvas');
+			initialize(5, 5, canvas);
+		}
+		
+		var _canvas;
+		var _context;
+		var _gridWidth;
+		var _gridHeight;
+		var _pixelWidth;
+		var _pixelHeight;
+		
+		/**************************/
+		/***** DEMO FUNCTIONS *****/
+		/**************************/
+		var initialize = function(width, height, canvas) {
+			_gridWidth = width;  //TODO: check bounds
+			_gridHeight = height;  //TODO: check bounds
+			_canvas = canvas;
+			_pixelWidth = canvas.width / _gridWidth;
+			_pixelHeight = canvas.height / _gridHeight;
+			log("pixel width = " + _pixelWidth);
+			log("pixel height = " + _pixelHeight);
+			
+			if(!_canvas) {
+				alert('Error: no canvas!!!');
+				return;
+			}
+			if(!_canvas.getContext) {
+				alert('Error: no canvas.getContext!!!');
+				return;
+			}
+			
+			_context = _canvas.getContext('2d');
+			if(!_context) {
+				alert('Error: failed to canvas.getContext!!!');
+				return;
+			}
+			
+			log("Context created (canvas=" + _canvas.width + "x" + _canvas.height + ",grid=" + width + "x" + height + ")!");
+			initGrid();
+
+			// Attach event listeners to canvas.
+			_canvas.addEventListener('click', canvasClicked, false);
+			
+			// Set up some defaults for rendering.
+			_context.fillStyle = "#0a0";
+			_context.strokeStyle= "#000";
+			_context.lineWidth = 1;
+			
+			render();
+		}
+		
+		var canvasClicked = function(e) {
+			var x, y;
+			if(e.pageX || e.pageY) {
+				x = e.pageX;
+				y = e.pageY;
+			} else {
+				x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+				y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+			}
+			x -= _canvas.offsetLeft;
+			y -= _canvas.offsetTop;
+			blockX = Math.floor(x / _pixelWidth);
+			blockY = Math.floor(y / _pixelHeight);
+			
+			log("Grid("+blockX+","+blockY+") clicked.");
+			toggleCell(blockX, blockY);
+			render();
+		}
+		
+		var toggleCell = function(x, y) {
+			var val = getPos(x, y);
+			if(val > 0)
+				setPos(blockX, blockY, 0);
+			else
+				setPos(blockX, blockY, 1);
+		}
+		
+		
+		var render = function() {
+			for(gy = 0; gy < _gridHeight; gy++) {
+				for(gx = 0; gx < _gridWidth; gx++) {
+					var px = gx * _pixelWidth;
+					var py = gy * _pixelHeight;
+					var val = getPos(gx, gy);
+					
+					//TODO: If the state of the pixel hasn't changed, don't redraw it.
+					_context.strokeRect(px, py, _pixelWidth, _pixelHeight);
+					if(val > 0)  {
+						_context.fillRect(px+1, py+1, _pixelWidth-2, _pixelHeight-2);
+					} else {
+						_context.clearRect(px+1, py+1, _pixelWidth-2, _pixelHeight-2);
+					}
+				}
+			}
+		}
+		
+		
+		var clearDemo = function() {
+			resetGrid();
+			render();
+		}
+		
+		var randomBetween = function(from, to) {
+			return Math.floor(Math.random() * (to - from + 1) + from);
+		}
+		
+		var randomizeDemo = function() {
+			for(gy = 0; gy < _gridHeight; gy++) {
+				for(gx = 0; gx < _gridWidth; gx++) {
+					setPos(gx, gy, randomBetween(0, 1));
+				}
+			}
+			render();
+		}
+		
+		
+		/**************************/
+		/***** GRID FUNCTIONS *****/
+		/**************************/
+		// The grid is a simple representation of a 2-D array.
+		var _grid;
+		var initGrid = function() {
+			_grid = new Array(_gridWidth * _gridHeight);
+			resetGrid();
+		}
+		var resetGrid = function() {
+			for(i = 0; i < _grid.length; i++) {
+				_grid[i] = 0;
+			}
+		}
+		var resetPos = function(x, y) {
+			setPosValue(0, x, y);
+		}
+		var getPos = function(x, y) {
+			var i = x + _gridHeight * y;
+			return _grid[i];
+		}
+		var setPos = function(x, y, value) {
+			var i = x + _gridHeight * y;
+			_grid[i] = value;
+		}
+		
+		
+		/*************************/
+		/***** EVENT HOOKUPS *****/
+		/*************************/
+		if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+		else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+		else window.onload = autorun;
+	</script>
+</body>
+</html>
