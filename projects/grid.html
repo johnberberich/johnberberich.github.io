@@ -83,7 +83,7 @@
 			initGrid();
 
 			// Attach event listeners to canvas.
-			_canvas.addEventListener('click', canvasClicked, false);
+			_canvas.addEventListener('click', onCanvasClicked, false);
 			
 			// Set up some defaults for rendering.
 			_context.fillStyle = "#0a0";
@@ -93,31 +93,48 @@
 			render();
 		}
 		
-		var canvasClicked = function(e) {
-			var x, y;
-			if(e.pageX || e.pageY) {
-				x = e.pageX;
-				y = e.pageY;
-			} else {
-				x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-				y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-			}
-			x -= _canvas.offsetLeft;
-			y -= _canvas.offsetTop;
-			blockX = Math.floor(x / _pixelWidth);
-			blockY = Math.floor(y / _pixelHeight);
+		var onCanvasClicked = function(e) {
+			var canvasXY = _canvas.relativeMouseCoordinates(e);
+			var gridXY = getGridCoordsFromElementCoords(canvasXY.x, canvasXY.y); 
 			
-			log("Grid("+blockX+","+blockY+") clicked.");
-			toggleCell(blockX, blockY);
+			log("Clicked on canvas(" + canvasXY.x + "," + canvasXY.y + ")/grid(" + gridXY.x + "," + gridXY.y + ").");
+			toggleCell(gridXY.x, gridXY.y);
 			render();
 		}
+
+		var	relativeMouseCoordinates = function(e) {
+			// Function taken from http://stackoverflow.com/a/5932203/121750
+			var totalOffsetX = 0;
+			var totalOffsetY = 0;
+			var canvasX = 0;
+			var canvasY = 0;
+			var currentElement = this;
+
+			do {
+				totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+				totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+			}
+			while(currentElement = currentElement.offsetParent);
+
+			canvasX = e.pageX - totalOffsetX;
+			canvasY = e.pageY - totalOffsetY;
+			return {x:canvasX, y:canvasY};
+		}
+		HTMLCanvasElement.prototype.relativeMouseCoordinates = relativeMouseCoordinates;
+		
+		var getGridCoordsFromElementCoords = function(x, y) {
+			var x = Math.floor(x / _pixelWidth);
+			var y = Math.floor(y / _pixelHeight);
+			return {x:x, y:y};
+		}
+			
 		
 		var toggleCell = function(x, y) {
 			var val = getPos(x, y);
 			if(val > 0)
-				setPos(blockX, blockY, 0);
+				setPos(x, y, 0);
 			else
-				setPos(blockX, blockY, 1);
+				setPos(x, y, 1);
 		}
 		
 		
@@ -157,12 +174,10 @@
 			}
 			render();
 		}
+
 		
-		
-		/**************************/
-		/***** GRID FUNCTIONS *****/
-		/**************************/
 		// The grid is a simple representation of a 2-D array.
+		//TODO:  Turn into class.
 		var _grid;
 		var initGrid = function() {
 			_grid = new Array(_gridWidth * _gridHeight);
