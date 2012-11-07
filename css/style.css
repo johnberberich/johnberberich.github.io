@@ -39,7 +39,10 @@ em {
 	color: rgb(50,50,50);
 }
 .content {
-	margin-top: 1.2em;
+	padding: 1.2em 0;
+}
+.content article {
+	margin-bottom: -1.2em;  /* reverse the bottom margin on the final <p> */
 }
 .content p {
 	margin-bottom: 1.2em;
@@ -50,6 +53,7 @@ em {
 footer {
 	padding: 1.2em 0 3em;
 	border-top: 1px rgb(100,100,100) dotted;
+	clear: both;
 }
 .copyright {
 	font-size: .9em;
