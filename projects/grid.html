@@ -7,7 +7,7 @@
 	<title>Grid Fun - Projects - John Berberich</title>
 	<link rel="stylesheet" type="text/css" href="../css/reset.css"></link>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"></link>
-	<script type="text/javascript">
+	<script type="text/javascript"> <!-- Google Analytics -->
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-35929716-1']);
 		_gaq.push(['_trackPageview']);
@@ -24,19 +24,19 @@
 	</header>
 	<section class="content">
 		<div id="gameboard">
-			<canvas id="canvas" width="300" height="300">
-				Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+			<canvas id="canvas" width="240" height="300">
+				Your browser doesn't support the <code>&lt;canvas&gt;</code> element or you have Javascript disabled.
 			</canvas>
 		</div>
 		<div id="controls">
 			<button type="button" onclick="clearDemo();">Clear</button>
 			<button type="button" onclick="randomizeDemo();">Randomize</button>
 			<button type="button" onclick="simulate();">Conway</button>
-			<button type="button" onclick="countShapes();">Count</button>
+			<!--button type="button" onclick="countShapes();">Count</button-->
 		</div>
 	</section><!-- /end .content -->
 	<footer>
-		<p class="copyright">Copyright © 2012 John Berberich</p>
+		<p class="cocyright">Cocyright © 2012 John Berberich</p>
 	</footer>
 	
 	<script src="../js/grid.js" type="text/javascript"></script>
@@ -44,12 +44,12 @@
 		var _canvas;
 		var _grid;
 		var _context;
-		var _pixelWidth;
-		var _pixelHeight;
+		var _cellWidth;
+		var _cellHeight;
 
 		var autorun = function() {
 			_canvas = document.getElementById('canvas');
-			_grid = new BerbSoft.Grid(5, 5);
+			_grid = new BerbSoft.Grid(6, 6);
 			init();
 			render();
 		}
@@ -68,8 +68,8 @@
 				alert('Error: failed to canvas.getContext!!!');
 				return;
 			}
-			_pixelWidth = _canvas.width / _grid.width;
-			_pixelHeight = _canvas.height / _grid.height;
+			_cellWidth = _canvas.width / _grid.width;
+			_cellHeight = _canvas.height / _grid.height;
 			console.log("Context created (canvas=" + _canvas.width + "x" + _canvas.height + ", grid=" + _grid.width + "x" + _grid.height + ")!");
 
 			// Attach event listeners to canvas.
@@ -128,8 +128,8 @@
 		HTMLCanvasElement.prototype.relativeMouseCoordinates = relativeMouseCoordinates;
 		
 		var getGridCoordsFromCanvasCoords = function(x, y) {
-			var x = Math.floor(x / _pixelWidth);
-			var y = Math.floor(y / _pixelHeight);
+			var x = Math.floor(x / _cellWidth);
+			var y = Math.floor(y / _cellHeight);
 			return {x:x, y:y};
 		}
 			
@@ -140,17 +140,18 @@
 		}
 		
 		var render = function() {
+			//BUG: loops only work if outer has >= the elements of inner.
 			for(var gy = 0; gy < _grid.width; gy++) {
 				for(var gx = 0; gx < _grid.height; gx++) {
-					var px = gx * _pixelWidth;
-					var py = gy * _pixelHeight;
+					var cx = gx * _cellWidth;
+					var cy = gy * _cellHeight;
 					var val = _grid.getValue(gx, gy);
 					//TODO: If the state of the pixel hasn't changed, don't redraw it.
-					_context.strokeRect(px, py, _pixelWidth, _pixelHeight);
+					_context.strokeRect(cx, cy, _cellWidth, _cellHeight);
 					if(val > 0)  {
-						_context.fillRect(px+1, py+1, _pixelWidth-2, _pixelHeight-2);
+						_context.fillRect(cx+1, cy+1, _cellWidth-2, _cellHeight-2);
 					} else {
-						_context.clearRect(px+1, py+1, _pixelWidth-2, _pixelHeight-2);
+						_context.clearRect(cx+1, cy+1, _cellWidth-2, _cellHeight-2);
 					}
 				}
 			}
