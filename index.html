@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-	<meta name="description" content="My personal home page." />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="description" content="My personal home page.">
 	<title>John Berberich</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css"></link>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"></link>
-	<script type="text/javascript">
+	<link href="css/normalize.css" rel="stylesheet" type="text/css"></link>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="screen"></link>
+	<script type="text/javascript"> <!-- Google Analytics -->
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-35929716-1']);
 		_gaq.push(['_trackPageview']);
@@ -22,28 +21,36 @@
 <body>
 	<header id="masthead">
 		<h1><a href="/">John Berberich</a></h1>
+		<nav id="main-nav">
+			<ul>
+				<li><a href="about">About</a></li>
+				<li><a href="projects">Projects</a></li>
+				<li><a href="blog">Blog</a></li>
+				<li><a href="contact">Contact</a></li>
+			</ul>
+		</nav>
 	</header>
 	<section class="content">
 		<article class="entry">
 			<p itemscope itemtype="http://data-vocabulary.org/Person">Hello! I'm
-			<span itemprop="name">John Berberich</span>, and I'm a
-			<span itemprop="title">programmer</span> living in
+			<span itemprop="name">John Berberich</span>. I'm a
+			<span itemprop="title">programmer</span> in
 			<span itemprop=address" itemscope itemtype="http://data-vocabulary.org/Address>
 				<span itemprop="locality">Cincinnati</span>,
-				<span itemprop="region">Ohio</span>
-			</span>. I  like technology, video games, running, scuba, and traveling.</p>
-			<p>While I work on this in fits and starts, you can download a copy of my
+				<span itemprop="region">Ohio</span></span>.
+			I like to program, scuba dive, run, and travel.</p>
+			<p>Please download a copy of my
 			<a href="https://dl.dropbox.com/u/4841094/John%20Berberich%20-%20Software%20Engineer.pdf">
-			resume</a>, connect with me on
+			résumé</a>, connect with me on
 			<a href="https://www.linkedin.com/in/johnberberich">LinkedIn</a>, and check
-			out some of the <a href="projects/index.html">projects</a> I've been working
-			on (there's just one right now).
+			out some <a href="projects/index.html">projects</a> I've been working
+			on (just one right now).
 			<p>If you want to talk, feel free to contact me via
 			<a href="mailto:jberberich@gmail.com">email</a> or
 			<a href="https://twitter.com/johnberberich">Twitter</a>.</p>
 		<article><!-- /end .entry -->
 	</section><!-- /end .content -->
 	<footer>
-		<p class="copyright">Copyright © 2012 John Berberich</p>
+		<p id="copyright">Copyright &copy; 2013 John Berberich</p>
 	</footer>
 </body>
