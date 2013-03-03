@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+	<article class="entry">
+		<p itemscope itemtype="http://data-vocabulary.org/Person">Hello! I'm
+		<span itemprop="name">John Berberich</span>. I'm a
+		<span itemprop="title">programmer</span> in
+		<span itemprop=address" itemscope itemtype="http://data-vocabulary.org/Address>
+			<span itemprop="locality">Cincinnati</span>,
+			<span itemprop="region">Ohio</span></span>.
+		I like to program, scuba dive, run, and travel.</p>
+		<p>Please download a copy of my
+		<a href="https://dl.dropbox.com/u/4841094/John%20Berberich%20-%20Software%20Engineer.pdf">
+		résumé</a>, connect with me on
+		<a href="https://www.linkedin.com/in/johnberberich">LinkedIn</a>, and check
+		out some <a href="projects/index.html">projects</a> I've been working
+		on (just one right now).
+		<p>If you want to talk, feel free to contact me via
+		<a href="mailto:jberberich@gmail.com">email</a> or
+		<a href="https://twitter.com/johnberberich">Twitter</a>.</p>
+	<article>
+{% endblock %}

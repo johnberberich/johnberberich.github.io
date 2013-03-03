@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Projects - John Berberich</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-	<meta name="description" content="My projects.">
-	<link rel="stylesheet" href="../css/normalize.css" type="text/css">
-	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+	<title>{% block title %}{% endblock %} -John Berberich</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 </head>
 <body>
 	<header id="masthead">
@@ -22,17 +22,15 @@
 	</header>
 
 	<section class="content">
-		<h1>Projects</h1>
-		<ul>
-			<li><a href="grid.html">Conway's Game of Life and more grid fun</a></li>
-		</ul>
+	{% block content %}
+	{% endblock %}
 	</section>
 
 	<footer>
-		<p class="copyright">Copyright © 2013 John Berberich</p>
+		<p id="copyright">Copyright &copy; 2013 John Berberich</p>
 	</footer>
 
-	<script>
+	<script type="text/javascript">
 		var _gaq=[['_setAccount','UA-35929716-1'],['_trackPageview']];
 		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
