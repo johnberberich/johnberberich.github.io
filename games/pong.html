@@ -14,7 +14,7 @@
 		</div>
 	</noscript>
 
-	<canvas id="canvas" width="320" height="240" style="border:1px solid #000">
+	<canvas id="canvas" width="320" height="240">
 		You need a modern browser and Javascript enabled to play Pong.
 	</canvas>
 	
@@ -24,54 +24,116 @@
 			this.keyState = keyState;
 			this.top = 0;
 			this.height = 50;
+			this.velocity = 5.0;  // Maybe change with player handicap.
 			this.isDirty = true;
+			this.oldTop = this.top;
+		}
+
+		function Ball() {
+			this.pos = { 'x': 100, 'y': 100 };
+			this.oldPos = this.pos;
+			this.size = 8;
+			this.velocity = { 'x': 5.0, 'y': 3.0 };
 		}
 
 		function Pong(board, players) {
 			
-			function updatePlayer(player) {
+			function updatePlayer(player, elapsed) {
 				// Determine if the player moved and by how much.
-				var potential = 3;
-				var delta = 0;
+				var dist = Math.round(player.velocity * elapsed);
+				var dir = 0;
 				if((player.keyState.up == 1) && (player.keyState.down == 0) && (player.top > 0)) {
+					dir = -1;
 					var distFromTop = player.top - 0;
-					delta = (potential <= distFromTop ? potential : distFromTop) * -1;
-					console.log(player.name + '(op=move, dir=up, req=' + potential + ', top=' + player.top + ', max=' + distFromTop + ', moved=' + delta + ')');
+					if(dist > distFromTop) {
+						dist = distFromTop;
+					}
 				} else if((player.keyState.down == 1) && (player.keyState.up == 0) && ((player.top + player.height) < boardHeight)) {
+					dir = 1;
 					var distFromBottom = boardHeight - (player.top + player.height);
-					delta = (potential <= distFromBottom ? potential : distFromBottom);
-					console.log(player.name + '(op=move, dir=down, req=' + potential + ', bottom=' + (player.top + player.height - 1) + ', max=' + distFromBottom + ', moved=' + delta + ')');
+					if(dist > distFromBottom) {
+						dist = distFromBottom;
+					}
 				}
+
 				// Update the player's position.
-				if(delta !== 0) {
-					player.top += delta;
+				if(dir !== 0) {
+					player.oldTop = player.top;
+					player.top += dist * dir;
 					player.isDirty = true;
+					console.log('move(' + player.name + ', dir=' + dir + ', dist=' + dist + ', oldTop=' + player.oldTop + ', newTop=' + player.top + ')');
 				} else {
 					player.isDirty = false;
 				}
 			}
 
-			function drawPlayer(player, x0) {
-				
-				//if(player.isDirty) {
-					//ctx.clearRect(x0, player.top - player.velocity, 10, player.height);
-					ctx.fillRect(x0, player.top, 10, player.height);
-				//}
+			function updateBall(elapsed) {
+				ball.oldPos.x = ball.pos.x;
+				ball.oldPos.y = ball.pos.y;
+				ball.pos.x += Math.round(ball.velocity.x * elapsed);
+				ball.pos.y += Math.round(ball.velocity.y * elapsed);
 			}
 
-			function update() {
-				updatePlayer(player1);
-				updatePlayer(player2);
+			function drawWalls() {
+				var wallWidth = 6;
+				var wallPadding = Math.ceil(wallWidth/2);
+				ctx.lineWidth = wallWidth;
+
+				ctx.beginPath();
+				ctx.moveTo(0, wallPadding);  // Top wall
+				ctx.lineTo(boardWidth, wallPadding);
+				ctx.moveTo(0, boardHeight-wallPadding);  // Bottom wall
+				ctx.lineTo(boardWidth, boardHeight-wallPadding);
+				ctx.stroke();
+			}
+
+			function drawNet() {
+				var netWidth = 6;
+				var centerX = boardWidth / 2;
+				ctx.beginPath();
+				ctx.moveTo(centerX, 0);
+				ctx.lineTo(centerX, boardHeight);
+				ctx.stroke();
+			}
+
+			function drawPlayer(player, x0) {
+				if(player.isDirty) {
+					ctx.clearRect(x0, player.oldTop, 8, player.height);
+					ctx.fillRect(x0, player.top, 8, player.height);
+				}
+			}
+
+			function drawBall() {
+				ctx.clearRect(ball.oldPos.x, ball.oldPos.y, ball.size, ball.size);
+				ctx.fillRect(ball.pos.x, ball.pos.y, ball.size, ball.size);
+			}
+
+			function update(elapsed) {
+				updateBall(elapsed);
+				updatePlayer(player1, elapsed);
+				updatePlayer(player2, elapsed);
 			}
 
 			function render() {
-				ctx.clearRect(0, 0, boardWidth, boardHeight);
-				drawPlayer(player1, 1);
-				drawPlayer(player2, 309);
+				//ctx.clearRect(0, 0, boardWidth, boardHeight);
+				drawNet();
+				drawPlayer(player1, 0);
+				drawPlayer(player2, 312);
+				drawBall();
 			}
 
+			this.init = function() {
+				// Start the ball off from the center
+				drawWalls();
+				drawNet();
+				drawPlayer(player1, 0);
+				drawPlayer(player2, 312);
+				drawBall();
+			};
+
 			this.run = function() {
-				update();
+				var elapsed = 0.5;
+				update(elapsed);
 				render();
 			};
 
@@ -80,6 +142,7 @@
 			var boardHeight = board.height;
 			var player1 = players[0];
 			var player2 = players[1];
+			var ball = new Ball();
 			var that = this;
 		}
 
@@ -110,22 +173,23 @@
 			var board = getGameBoard(document, 'canvas');
 			var players = [new Player('john', input.p1), new Player('chris', input.p2)];
 			pong = new Pong(board, players);
+			pong.init();
 			setInterval(pong.run, ONE_FRAME_TIME);
 		}
 
 		function onkey(e, val) {
 			var keyCode = e.keyCode || e.charCode;
 			switch(keyCode) {
-				case 65:  // "a"
+				case 65:  // "a" = p1 move up
 					input.p1.up = val;
 					break;
-				case 90:  // "z"
+				case 90:  // "z" = p1 move down
 					input.p1.down = val;
 					break;
-				case 75:  // "k"
+				case 75:  // "k" = p2 move up
 					input.p2.up = val;
 					break;
-				case 77: // "m"
+				case 77: // "m" = p2 move down
 					input.p2.down = val;
 					break;
 			}
