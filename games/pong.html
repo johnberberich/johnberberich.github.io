@@ -4,8 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Pong - Games - John Berberich</title>
-	<link rel="stylesheet" href="../css/reset.css">
-	<!--link rel="stylesheet" href="../css/style.css"-->
+	<link rel="stylesheet" href="../css/normalize.css">
 </head>
 <body>
 	<noscript>
@@ -39,7 +38,7 @@
 		function Pong(board, players) {
 			
 			function updatePlayer(player, elapsed) {
-				// Determine if the player moved and by how much.
+				// 1) Determine if the player moved and by how much.
 				var dist = Math.round(player.velocity * elapsed);
 				var dir = 0;
 				if((player.keyState.up == 1) && (player.keyState.down == 0) && (player.top > 0)) {
@@ -55,6 +54,9 @@
 						dist = distFromBottom;
 					}
 				}
+
+				// 2) Did the player collide with anything (e.g., the walls)?
+				
 
 				// Update the player's position.
 				if(dir !== 0) {

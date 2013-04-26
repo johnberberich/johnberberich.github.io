@@ -2,30 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Grid Fun - Projects - John Berberich</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="../css/normalize.css" type="text/css">
-	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+	<title>Conway's Game of Life - Games - John Berberich</title>
+	<link rel="stylesheet" href="../css/normalize.css" type="text/css" media="screen">
 </head>
 <body>
-	<header id="masthead">
-		<h1><a href="/">John Berberich</a></h1>
-	</header>
+	<noscript>
+		<div class="alert">
+			You need a modern browser and Javascript enabled to play Pong.
+		</div>
+	</noscript>
 
-	<section class="content">
-		<div id="gameboard">
-			<canvas id="canvas" width="240" height="300">
-				Your browser doesn't support the <code>&lt;canvas&gt;</code> element or you have Javascript disabled.
-			</canvas>
-		</div>
-		<div id="controls">
-			<button type="button" onclick="clearDemo();">Clear</button>
-			<button type="button" onclick="randomizeDemo();">Randomize</button>
-			<button type="button" onclick="simulate();">Conway</button>
-			<!--button type="button" onclick="countShapes();">Count</button-->
-		</div>
-	</section><!-- /end .content -->
+	<header>
+		<h1>Conway's Game of Life</h1>
+	</header>
+	
+	<h2>Rules (from Wikipedia)</h2>
+	<ol>
+		<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+		<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+		<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+		<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+	</ol>
+
+	<canvas id="canvas" width="240" height="300">
+		Your browser doesn't support the <code>&lt;canvas&gt;</code> element or you have Javascript disabled.
+	</canvas>
+	
+	<div id="controls">
+		<button type="button" onclick="clearDemo();">Clear</button>
+		<button type="button" onclick="randomizeDemo();">Randomize</button>
+		<button type="button" onclick="simulate();">Conway</button>
+		<!--button type="button" onclick="countShapes();">Count</button-->
+	</div>
 
 	<footer>
 		<p class="copyright">Copyright &copy; 2013 John Berberich</p>

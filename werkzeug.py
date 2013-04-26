@@ -16,6 +16,9 @@ class Website(object):
 		self.url_map = Map([
 			Rule('/', endpoint='home'),
 			Rule('/about', endpoint='about'),
+			Rule('/contact', endpont='contact'),
+			Rule('/games', endpont='games'),
+			Rule('/projects', endpoint='projects'),
 			Rule('/<short_id>', endpoint='follow_short_link'),
 			Rule('/<short_id>+', endpoint='short_link_details')
 		])
@@ -38,6 +41,15 @@ class Website(object):
 
 	def about(self, request):
 		return self.render_template('about.html')
+
+	def contact(self, request):
+		return self.render_template('about.html')
+
+	def games(self, request):
+		return self.render_template('games.html')
+
+	def projects(self, request):
+		return self.render_template('projects.html')
 
 	def on_new_url(self, request):
 		error = None
