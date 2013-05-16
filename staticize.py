@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader, Template
 def staticize():
 	loader = FileSystemLoader('templates')
 	env = Environment(loader=loader)
-	template_names = [t for t in loader.list_templates() if not t.startswith('_')]
+	template_names = [t for t in loader.list_templates() if not t.startswith(('_','.'))]
 	for template_name in template_names:
 		print 'Staticizing ' + template_name
 		template = env.get_template(template_name)
