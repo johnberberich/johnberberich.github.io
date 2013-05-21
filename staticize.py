@@ -3,24 +3,52 @@ import codecs
 from jinja2 import Environment, FileSystemLoader, Template
 
 
-def staticize():
-	loader = FileSystemLoader('templates')
-	env = Environment(loader=loader)
-	template_names = [t for t in loader.list_templates() if not t.startswith(('_','.'))]
-	for template_name in template_names:
-		print 'Staticizing ' + template_name
-		template = env.get_template(template_name)
-		html = template.render()
-		try:
-			html_file = codecs.open(template_name, 'w', 'utf-8')
-			try:
-				html_file.write(html)
-			finally:
-				html_file.close()
-		except IOError as e:
-			print 'IOError{}: Could not open '.format(e.errno) + template_name + ' for writing'
-			print e.strerror
+def render(template_path):
+    loader = FileSystemLoader(template_path)
+    env = Environment(loader=loader)
+    ignores = ('_', '.')
+    filenames = [t for t in loader.list_templates()
+            if not t.startswith(ignores)]
+    for filename in filenames:
+        print 'Staticizing ' + filename
+        template = env.get_template(filename)
+        text = template.render()
+        try:
+            outfile = codecs.open(filename, 'w', 'utf-8')
+            try:
+                outfile.write(text)
+            finally:
+                outfile.close()
+        except IOError as e:
+            print 'IOError{}: Could not open '.format(e.errno) + filename + ' for writing'
+            print e.strerror
+
+
+def run():
+    print 'This feature is not currently available.'
 
 
 if __name__ == '__main__':
-	staticize()
+    import sys
+
+    #TODO Handle args better
+    #TODO Undo default behavior
+    # If no option is given, default to 'render'
+    if len(sys.argv) == 1:
+        command = 'render'
+    else:
+        command = sys.argv[1]
+
+    if command == 'render':
+        render('templates')
+    elif command == 'run':
+        run()
+    else:
+        # Print usage info
+        print """
+usage: staticize.py <command> [<options>]
+
+Commands are:
+   render   Convert templates into static files
+   run      Start dev server to dynamically convert templates
+"""
