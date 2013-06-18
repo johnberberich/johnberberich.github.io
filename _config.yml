@@ -1,0 +1,2 @@
+destination: ./_site
+exclude:     ['CNAME', 'README.md', 'requirements.txt', 'templates', 'TODO.txt', '*.py']
