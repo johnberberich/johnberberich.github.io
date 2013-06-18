@@ -41,13 +41,13 @@
 				// 1) Determine if the player moved and by how much.
 				var dist = Math.round(player.velocity * elapsed);
 				var dir = 0;
-				if((player.keyState.up == 1) && (player.keyState.down == 0) && (player.top > 0)) {
+				if((player.keyState.up === 1) && (player.keyState.down === 0) && (player.top > 0)) {
 					dir = -1;
 					var distFromTop = player.top - 0;
 					if(dist > distFromTop) {
 						dist = distFromTop;
 					}
-				} else if((player.keyState.down == 1) && (player.keyState.up == 0) && ((player.top + player.height) < boardHeight)) {
+				} else if((player.keyState.down === 1) && (player.keyState.up === 0) && ((player.top + player.height) < boardHeight)) {
 					dir = 1;
 					var distFromBottom = boardHeight - (player.top + player.height);
 					if(dist > distFromBottom) {
