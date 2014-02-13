@@ -1,2 +1,9 @@
 destination: ./_site
-exclude:     ['CNAME', 'README.md', 'requirements.txt', 'templates', 'TODO.txt', '*.py']
+exclude:
+[
+	'CNAME',
+	'README.md',
+	'requirements.txt',
+	'TODO.txt',
+	'*.py'
+]

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>{{ page.title }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<meta name="google-site-verification" content="oTmLIeNN96Rw9Xv70CTpsVzkQJMCuTqe3GllV01s-5A" />
+	<title>{{ page.title }} | johnberberich.com</title>
 	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/main.css" />
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -21,34 +21,21 @@
 			<header class="page-header">
 				<nav>
 					<ul class="nav nav-pills pull-right">
+						<li><a href="projects.html">Projects</a></li>
 						<li><a href="about.html">About</a></li>
-						<li><a href="games.html">Games</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
-				</nav>
-				<h1><span itemprop="name">John Berberich</span></h1>
-			</header>
-			<div class="row">
-				<div class="col-sm-3 sidebar">
-					<div>
-						<p class="lead" itemscope itemtype="http://data-vocabulary.org/Person">
-							I'm a <span itemprop="title">Software Engineer</span>
-							in <span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-								<span itemprop="locality">Cincinnati</span></span>.
-						</p>
-					</div>
-					<div>
-						<ul class="list-unstyled">
+					<ul class="nav nav-pills pull-right">
 							<li><a href="https://twitter.com/johnberberich"><i class="fa fa-twitter-square"></i></a></li>
 							<li><a href="https://github.com/johnberberich"><i class="fa fa-github-square"></i></a></li>
 							<li><a href="http://www.linkedin.com/in/johnberberich"><i class="fa fa-linkedin-square"></i></a></li>
 							<li><a href="#"><i class="fa fa-envelope"></i></a></li>
 						</ul>
-					</div>
-				</div>
-				<div class="col-sm-8 col-sm-offset-1">
-					{{ content }}
-				</div>
+				</nav>
+				<h1><span itemprop="name"><a href="/">John Berberich</a></span></h1>
+			</header>
+			<div class="row">
+				{{ content }}
 			</div>
 		</div>
 	</div>
@@ -59,8 +46,8 @@
 		</div>
 	</footer>
 
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var _gaq=[['_setAccount','UA-35929716-1'],['_trackPageview']];
 		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
