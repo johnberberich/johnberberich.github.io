@@ -1,6 +1,5 @@
 destination: ./_site
-exclude:
-[
+exclude: [
 	'CNAME',
 	'README.md',
 	'requirements.txt',

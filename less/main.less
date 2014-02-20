@@ -1,21 +1,28 @@
 @import "bs-less/bootstrap.less";
 
-@brand-primary:  #D8D860;
-@body-bg:        @gray-darker;
-@text-color:     @gray-lighter;
+// @brand-primary:  #D8D860;
+@brand-primary: darken(#BED971, 15%);
 
 html, body {
 	height: 100%;
 }
 
-#wrap {
+body {
+	background: url(../img/avatar-bg.gif) right bottom no-repeat;
+	background-position: fixed;
+	background-size: 40% auto;
+}
+
+.wrap {
 	min-height: 100%;
 	height: auto;
 	margin: 0 auto -60px;
 	padding: 0px 0px 60px;
+	background-color: rgba(255, 255, 255, 0.85);
+	text-shadow: 0 1px 0 #fff;
 }
 
-#footer {
+footer {
 	height: 60px;
 	background-color: #F5F5F5;
 }
@@ -28,4 +35,11 @@ html, body {
 
 .container .text-muted {
 	margin: 20px 0px;
+}
+
+@media (min-width: @screen-sm-min) {
+	body {
+		background: url(../img/avatar-bg.gif) top right no-repeat;
+		background-position: fixed;
+	}
 }
