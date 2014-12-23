@@ -1,2 +1,0 @@
-- Add dev mode using Werkzeug to dynamically render templates instead of
-having to always run "staticize.py" whenever a template is changed.
