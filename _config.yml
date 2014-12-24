@@ -1,8 +1,15 @@
 destination: ./_site
 exclude: [
 	'CNAME',
-	'README.md',
-	'requirements.txt',
-	'TODO.txt',
-	'*.py'
+	'README.md'
 ]
+markdown: rdiscount
+permalink: /posts/:title
+rdiscount:
+extensions: [smart]
+gems:
+- jekyll-sitemap
+name: John Berberich
+url: http://johnberberich.com
+description: A fantastic blog that is fantastic.
+twitter: johnberberich
