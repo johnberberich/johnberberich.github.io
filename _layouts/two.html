@@ -1,16 +1,44 @@
 ---
 layout: default
 ---
-<div class="col-sm-8">
-	{{ content }}
-</div>
-<div class="col-sm-3 col-sm-offset-1 sidebar">
-	<div>
-		<ul class="list-unstyled">
-			<li><a href="https://twitter.com/johnberberich"><i class="fa fa-twitter-square"></i></a></li>
-			<li><a href="https://github.com/johnberberich"><i class="fa fa-github-square"></i></a></li>
-			<li><a href="http://www.linkedin.com/in/johnberberich"><i class="fa fa-linkedin-square"></i></a></li>
-			<li><a href="#"><i class="fa fa-envelope"></i></a></li>
-		</ul>
-	</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="sidebar three columns">
+      <div class="photo">
+        <a href="/">
+          <img src="/img/avatar.jpg" alt="John's face">
+        </a>
+      </div>
+      <div class="tagline">
+        Hi, I'm John.
+      </div>
+      <div class="links">
+        <ul>
+          <li><a href="/">About</a></li>
+          <li><a href="/resume/">Résumé</a></li>
+          <li><a href="/projects/">Projects</a></li>
+        </ul>
+      </div>
+      <div class="social">
+        <ul>
+          <li><a href="https://github.com/johnberberich"><i class="fa fa-github"></i></a></li>
+          <li><a href="http://www.linkedin.com/in/johnberberich"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="https://twitter.com/johnberberich"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="mailto:jberberich@gmail.com"><i class="fa fa-envelope"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nine columns">
+      {% if page.header %}
+      <header>
+        <h1>{{ page.title }}</h1>
+      </header>
+      {% endif %}
+      {{ content }}
+    </div>
+
+  </div>
 </div>

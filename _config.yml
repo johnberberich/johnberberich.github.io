@@ -1,20 +1,41 @@
-destination: ./_site
+title:       John Berberich
+tagline:     Foo
+description: A fantastic blog that is fantastic.
+url:         http://johnberberich.com
+baseurl:     /
+
+google_analytics:         UA-35929716-1
+google_site_verification: oTmLIeNN96Rw9Xv70CTpsVzkQJMCuTqe3GllV01s-5A
+
+author:
+  name:  John Berberich
+  email: jberberich@gmail.com
+
 exclude: [
-	'CNAME',
-	'README.md',
-    'Gemfile',
-    'Gemfile.lock',
-    '*.sublime-*',
-    'bin/',
-    'less/'
+  'CNAME',
+  'README.md',
+  'Gemfile',
+  'Gemfile.lock',
+  '*.sublime-*',
+  'bin/',
+  'less/'
 ]
-markdown: rdiscount
-permalink: /posts/:title
-rdiscount:
-extensions: [smart]
+
+# Dependencies
+markdown:    rdiscount
+highlighter: false
+
+# Permalinks
+permalink:           pretty
+relative_permalinks: false
+
+sass:
+  style: :compressed
+
 gems:
 - jekyll-sitemap
-name: John Berberich
-url: http://johnberberich.com
-description: A fantastic blog that is fantastic.
-twitter: johnberberich
+
+github:
+  repo:  https://github.com/johnberberich/johnberberich.github.io
+
+version: 2.0.0

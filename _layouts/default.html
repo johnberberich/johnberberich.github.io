@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<meta name="google-site-verification" content="oTmLIeNN96Rw9Xv70CTpsVzkQJMCuTqe3GllV01s-5A" />
-	<title>{{ page.title }}</title>
-	<link rel="stylesheet" href="css/font-awesome.css" />
-	<link rel="stylesheet" href="css/main.css" />
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <meta charset="utf-8">
+  <title>
+    {% if page.title %}
+      {{ page.title }} &ndash;
+    {% endif %}
+    {{ site.title }}
+  </title>
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="{{ site.author.name }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% include google_site_verification.html %}
+
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/skeleton.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="icon" type="image/png" href="/img/favicon.png">
 </head>
 <body>
-	<div class="wrap">
-		<div class="container">
-			<div class="row">
-				{{ content }}
-			</div>
-		</div>
-	</div>
 
-	<footer id="footer">
-		<div class="container">
-			<p id="copyright" class="text-muted">Copyright &copy; 2014 John Berberich</p>
-		</div>
-	</footer>
+  <section class="main">
+    {{ content }}
+  </section>
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		var _gaq=[['_setAccount','UA-35929716-1'],['_trackPageview']];
-		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g,s)}(document,'script'));
-	</script>
+  <footer>
+    <p>
+      Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and <a href="http://getskeleton.com/" target="_blank">Skeleton</a>.
+      Hosted on <a href="https://github.com/johnberberich/johnberberich.github.io" target="_blank">Github</a>.
+    </p>
+    <p>&copy; 2014 John Berberich</p>
+  </footer>
+
+  {% include google_analytics.html %}
 </body>
 </html>
