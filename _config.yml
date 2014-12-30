@@ -1,7 +1,12 @@
 destination: ./_site
 exclude: [
 	'CNAME',
-	'README.md'
+	'README.md',
+    'Gemfile',
+    'Gemfile.lock',
+    '*.sublime-*',
+    'bin/',
+    'less/'
 ]
 markdown: rdiscount
 permalink: /posts/:title
