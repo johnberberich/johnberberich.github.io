@@ -1,0 +1,59 @@
+name: John Berberich
+label: Software Engineer
+email: jberberich@gmail.com
+work:
+    - company: KnowledgeWorks
+      position: Contract Software Engineer
+      website: http://knowledgeworks.org/
+      started_on: 2013-10-17
+      accomplishments:
+        - Rewrote a key HTML table of student grades in a learning management system to use jQuery DataTables and Twig, and refactored back-end code to be more maintainable and less coupled to Drupal.
+        - Wrote a report-building application in Symfony 2 that was designed to ease the production of reports for leaders of competency-based learning programs.
+      technologies: [PHP, Symfony, JavaScript, jQuery, Drupal, MySQL, Git, Linux]
+
+    - company: Kroger
+      position: Software Engineer
+      website: https://www.kroger.com/
+      started_on: 2007
+      ended_on: 2012
+      accomplishments:
+        - Implemented an ASP.NET base page to pull layout and content from SharePoint.
+        - Collaborated on the design and later maintained a SharePoint application that facilitated the sharing of content between distinct sites.
+        - Coordinated code releases, maintained VCS, and created deployment packages.
+        - Wrote a SharePoint timer job to synchronize video metadata from external content system.
+        - Wrote a PowerShell script to automate the creation and distribution of PFX certificates.
+      technologies: [C#, ASP.NET, SharePoint, SQL Server, PowerShell]
+
+    - company: FormShare
+      position: Software Developer
+      started_on: 2007
+      ended_on: 2007
+      accomplishments:
+        - Worked in a small team to develop a BPA web application using ASP.NET.
+        - Built data communication and exchange services using .NET Web Services.
+        - Diagnosed and fixed performance problems in a dynamic form builder application written in ASP.NET.
+      technologies: [C#, ASP.NET, JavaScript, SQL Server, Windows Services, Web Services]
+
+    - company: Com-Net Software
+      position: Software Developer
+      started_on: 2005
+      ended_on: 2007
+      accomplishments:
+        - Developed a touch-screen kiosk using WinForms.
+        - Wrote a flight tracking web site, email notification service, and data import service; and worked with the airport through design, testing, and implementation.
+        - Built a WinForms application for managing events in a hotel presentation application, and collaborated with team in the design of the flight, news, and weather data import services and product registration.
+      technologies: [C#, WinForms, ASP, VBScript, SQL Server, XML, Web Services, Windows Services]
+
+    - company: United Medical Resources
+      position: Sr. Programmer Analyst
+      started_on: 2002
+      ended_on: 2005
+      accomplishments:
+        - Wrote an ASP web application used by health care managers to track high-risk patients and to follow their compliance through a managed health plan.
+      technologies: [C#, VB6, ASP, VBScript, SQL Server, XML, Web Services]
+
+education:
+    - school: Wright State University
+      website: http://www.wright.edu/
+      degree: B.S. Computer Science
+      graduated_in: 2002
