@@ -1,6 +1,18 @@
 name: John Berberich
 label: Software Engineer
 email: jberberich@gmail.com
+biography:
+    - I am a full-stack, polyglot web developer with over ten years of experience programming, designing, and debugging software. On my recent projects, I've enjoyed learning PHP and Symfony2 on the fly, and I typically use Python on my personal projects The remainder of my professional work has been in C#.
+    - I'm seeking a senior role on a web development team where I can contribute code on both the front- and back-ends.
+
+skills:
+    - type: Programming Languages
+      items: [PHP, JavaScript, Python, C#]
+    - type: Web Frameworks
+      items: [Symfony 2, jQuery, ASP.NET, SharePoint]
+    - type: Tools
+      items: [Git, Vagrant, Jenkins, Docker]
+
 work:
     - company: KnowledgeWorks
       position: Contract Software Engineer
@@ -56,4 +68,4 @@ education:
     - school: Wright State University
       website: http://www.wright.edu/
       degree: B.S. Computer Science
-      graduated_in: 2002
+      graduation_year: 2002

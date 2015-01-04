@@ -18,44 +18,24 @@ title:  Résumé
 
 <section id="biography">
   <h3>Biography</h3>
-  <p>
-    I am a full-stack, polyglot web developer with over ten years of experience programming, designing, and debugging software. On my recent projects, I've enjoyed learning PHP and Symfony2 on the fly, and I typically use Python on my personal projects The remainder of my professional work has been in C#.
-  </p>
-  <p>
-    I'm seeking a senior role on a web development team where I can contribute code on both the front- and back-ends.
-  </p>
+  {% for bio in resume.biography %}
+  <p>{{ bio }}</p>
+  {% endfor %}
 </section>
 
 <section id="skills">
   <h3>Skills</h3>
   <ul>
+  {% for skill in resume.skills %}
     <li>
-      Programming Languages
+      {{ skill.type }}
       <ul>
-        <li>PHP</li>
-        <li>JavaScript</li>
-        <li>Python</li>
-        <li>C#</li>
+      {% for item in skill.items %}
+        <li>{{ item }}</li>
+      {% endfor %}
       </ul>
     </li>
-    <li>
-      Web Frameworks
-      <ul>
-        <li>Symfony 2</li>
-        <li>jQuery</li>
-        <li>ASP.NET</li>
-        <li>SharePoint</li>
-      </ul>
-    </li>
-    <li>
-      Tools
-      <ul>
-        <li>Git</li>
-        <li>Vagrant</li>
-        <li>Jenkins</li>
-        <li>Docker</li>
-      </ul>
-    </li>
+  {% endfor %}
   </ul>
 </section>
 
@@ -67,22 +47,16 @@ title:  Résumé
     <header>
       <h4>{{ job.company }} - {{ job.position }}</h4>
       <h5>
-        {{ job.started_on | date: "%F" }}
-        -
-        {% if job.ended_on %}
-          {{ job.ended_on | date: "%F" }}
-        {% else %}
-          Present
-        {% endif %}
+        {{ job.started_on }} - {{ job.ended_on | default: "Present" }}
       </h5>
     </header>
-    Accomplishments
+    <h6>Accomplishments<h6>
     <ul>
     {% for accomplishment in job.accomplishments %}
       <li>{{ accomplishment }}</li>
     {% endfor %}
     </ul>
-    Technologies
+    <h6>Technologies</h6>
     <ul>
     {% for tech in job.technologies %}
       <li>{{ tech }}</li>
@@ -96,7 +70,7 @@ title:  Résumé
   <h3>Education</h3>
   <ul>
   {% for e in resume.education %}
-    <li>{{ e.degree }}, {{ e.school }}, {{ e.graduated_on }}.</li>
+    <li>{{ e.degree }}, {{ e.school }}, {{ e.graduation_year }}.</li>
   {% endfor %}
   </ul>
 </section>
