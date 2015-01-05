@@ -1,76 +1,71 @@
 ---
-layout: one
+layout: default
 title:  Résumé
 ---
 
 {% assign resume = site.data.resume %}
+<article class="resume row offset-by-two eight columns">
 
-<h1>{{ resume.name }}</h1>
-<h2>{{ resume.label }}</h2>
+  <header class="">
+    <h1>{{ resume.name }}</h1>
+    <h2>{{ resume.label }}</h2>
+  </header>
 
-<nav>
-  <ul>
-    <li><a href="#biography"><i class="fa fa-user"></i> Biography</a></li>
-    <li><a href="#experience"><i class="fa fa-building"></i> Experience</a></li>
-    <li><a href="#education"><i class="fa fa-graduation-cap"></i> Education</a></li>
-  </ul>
-</nav>
+  <section id="biography">
+    <h3>Biography</h3>
+    {% for bio in resume.biography %}
+    <p>{{ bio }}</p>
+    {% endfor %}
+  </section>
 
-<section id="biography">
-  <h3>Biography</h3>
-  {% for bio in resume.biography %}
-  <p>{{ bio }}</p>
-  {% endfor %}
-</section>
-
-<section id="skills">
-  <h3>Skills</h3>
-  <ul>
-  {% for skill in resume.skills %}
-    <li>
-      {{ skill.type }}
-      <ul>
-      {% for item in skill.items %}
-        <li>{{ item }}</li>
-      {% endfor %}
-      </ul>
-    </li>
-  {% endfor %}
-  </ul>
-</section>
-
-<section id="experience">
-  <h3>Experience</h3>
-
-  {% for job in resume.work %}
-  <section>
-    <header>
-      <h4>{{ job.company }} - {{ job.position }}</h4>
-      <h5>
-        {{ job.started_on }} - {{ job.ended_on | default: "Present" }}
-      </h5>
-    </header>
-    <h6>Accomplishments<h6>
-    <ul>
-    {% for accomplishment in job.accomplishments %}
-      <li>{{ accomplishment }}</li>
+  <section id="skills">
+    <h3>Skills</h3>
+    {% for skill in resume.skills %}
+    <strong>{{ skill.type }}</strong>
+    <ul class="skill-list">
+    {% for item in skill.items %}
+      <li>{{ item }}</li>
     {% endfor %}
     </ul>
-    <h6>Technologies</h6>
+    {% endfor %}
+  </section>
+
+  <section id="experience">
+    <h3>Experience</h3>
+    {% for job in resume.work %}
+    <div class="job">
+      <h5 class="job-position">{{ job.position }}</h5>
+      <div class="job-company"><a href="{{ job.website }}">{{ job.company }}</a></div>
+      <div class="job-duration">
+        {{ job.started_on }} - {{ job.ended_on | default: "Present" }}
+      </div>
+      <div class="accopmlishments">
+        <strong>Accomplishments</strong>
+        <ul>
+        {% for accomplishment in job.accomplishments %}
+          <li>{{ accomplishment }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <strong>Technologies</strong>
+        <ul class="skill-list">
+        {% for tech in job.technologies %}
+          <li>{{ tech }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% endfor %}
+  </section>
+
+  <section id="education">
+    <h3>Education</h3>
     <ul>
-    {% for tech in job.technologies %}
-      <li>{{ tech }}</li>
+    {% for e in resume.education %}
+      <li>{{ e.degree }}, <a href="{{ e.website }}">{{ e.school }}</a>, {{ e.graduation_year }}.</li>
     {% endfor %}
     </ul>
   </section>
-  {% endfor %}
-</section>
 
-<section id="education">
-  <h3>Education</h3>
-  <ul>
-  {% for e in resume.education %}
-    <li>{{ e.degree }}, {{ e.school }}, {{ e.graduation_year }}.</li>
-  {% endfor %}
-  </ul>
-</section>
+</article>

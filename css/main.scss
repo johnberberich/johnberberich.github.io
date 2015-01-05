@@ -39,7 +39,26 @@ footer {
   }
 }
 
-.container {
+main.container {
   border-bottom: 1px dotted #eee;
   margin-bottom: 2rem;
+}
+
+.resume {
+  a {
+    color: rgb(0,0,0);
+    text-decoration: underline dots;
+  }
+  .skill-list {
+    list-style: none;
+    li {
+      display: inline;
+      &:after {
+        content: ", "
+      }
+      &:last-child:after {
+        content: ""
+      }
+    }
+  }
 }

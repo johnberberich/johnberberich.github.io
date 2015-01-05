@@ -6,26 +6,33 @@ biography:
     - I'm seeking a senior role on a web development team where I can contribute code on both the front- and back-ends.
 
 skills:
-    - type: Programming Languages
-      items: [PHP, JavaScript, Python, C#]
-    - type: Web Frameworks
+    - type: Languages
+      items: [PHP 5, JavaScript, Python, C#]
+    - type: Frameworks
       items: [Symfony 2, jQuery, ASP.NET, SharePoint]
+    - type: Databases
+      items: [MySQL, SQL Server]
     - type: Tools
       items: [Git, Vagrant, Jenkins, Docker]
+    - type: CMSs
+      items: [Drupal, Wordpress, Umbraco]
 
 work:
     - company: KnowledgeWorks
+      location: Cincinnati, OH
+      website: "http://knowledgeworks.org/"
       position: Contract Software Engineer
-      website: http://knowledgeworks.org/
       started_on: 2013-10-17
+      ended_on: Present
       accomplishments:
         - Rewrote a key HTML table of student grades in a learning management system to use jQuery DataTables and Twig, and refactored back-end code to be more maintainable and less coupled to Drupal.
         - Wrote a report-building application in Symfony 2 that was designed to ease the production of reports for leaders of competency-based learning programs.
-      technologies: [PHP, Symfony, JavaScript, jQuery, Drupal, MySQL, Git, Linux]
+      technologies: [PHP 5, Symfony 2, JavaScript, jQuery, Drupal 6, MySQL, Git, Linux]
 
     - company: Kroger
+      location: Cincinnati, OH
+      website: "https://www.kroger.com/"
       position: Software Engineer
-      website: https://www.kroger.com/
       started_on: 2007
       ended_on: 2012
       accomplishments:
@@ -37,6 +44,8 @@ work:
       technologies: [C#, ASP.NET, SharePoint, SQL Server, PowerShell]
 
     - company: FormShare
+      location: Dayton, OH
+      website: "http://formshare.com/"
       position: Software Developer
       started_on: 2007
       ended_on: 2007
@@ -47,6 +56,8 @@ work:
       technologies: [C#, ASP.NET, JavaScript, SQL Server, Windows Services, Web Services]
 
     - company: Com-Net Software
+      location: Dayton, OH
+      website: "http://comnetsoftware.com/"
       position: Software Developer
       started_on: 2005
       ended_on: 2007
@@ -57,6 +68,8 @@ work:
       technologies: [C#, WinForms, ASP, VBScript, SQL Server, XML, Web Services, Windows Services]
 
     - company: United Medical Resources
+      location: Cincinnati, OH
+      website: "https://www.umr.com/"
       position: Sr. Programmer Analyst
       started_on: 2002
       ended_on: 2005
@@ -66,6 +79,6 @@ work:
 
 education:
     - school: Wright State University
-      website: http://www.wright.edu/
+      website: "http://www.wright.edu/"
       degree: B.S. Computer Science
       graduation_year: 2002
