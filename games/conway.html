@@ -17,11 +17,13 @@ permalink: games/conway.html
 </canvas>
 
 <div id="controls">
-    <button type="button" onclick="clearDemo();">Clear</button>
-    <button type="button" onclick="randomizeDemo();">Randomize</button>
-    <button type="button" onclick="simulate();">Iterate</button>
-    <!--button type="button" onclick="countShapes();">Count</button-->
+    <button type="button" onclick="CONWAY.clear();">Clear</button>
+    <button type="button" onclick="CONWAY.randomize();">Randomize</button>
+    <button type="button" onclick="CONWAY.simulate();">Iterate</button>
 </div>
 
 <script src="/js/grid.js" type="text/javascript"></script>
 <script src="/js/games/conway.js" type="text/javascript"></script>
+<script>
+    CONWAY.init('canvas');
+</script>
