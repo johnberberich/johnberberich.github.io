@@ -106,7 +106,7 @@
               var val = _grid.getValue(gx, gy);
               //TODO: If the state of the pixel hasn't changed, don't redraw it.
               _context.strokeRect(cx, cy, _cellWidth, _cellHeight);
-              if(val > 0)  {
+              if(val > 0) {
                   _context.fillRect(cx+1, cy+1, _cellWidth-2, _cellHeight-2);
               } else {
                   _context.clearRect(cx+1, cy+1, _cellWidth-2, _cellHeight-2);
@@ -116,12 +116,9 @@
   }
 
   var randomBetween = function(from, to) {
-      return Math.floor(Math.random() * (to - from + 1) + from);
+    return Math.floor(Math.random() * (to - from + 1) + from);
   }
 
-  /*************************/
-  /***** EVENT HOOKUPS *****/
-  /*************************/
   if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", autorun, false);
   } else if (document.attachEvent) {

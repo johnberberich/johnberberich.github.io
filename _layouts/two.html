@@ -2,43 +2,41 @@
 layout: default
 ---
 
-<div class="container">
-  <div class="row">
+<div class="row">
 
-    <div class="sidebar three columns">
-      <div class="photo">
-        <a href="/">
-          <img src="/img/avatar.jpg" alt="John's face">
-        </a>
-      </div>
-      <div class="tagline">
-        Hi, I'm John.
-      </div>
-      <div class="links">
-        <ul>
-          <li><a href="/">About</a></li>
-          <li><a href="/resume/">Résumé</a></li>
-          <li><a href="/projects/">Projects</a></li>
-        </ul>
-      </div>
-      <div class="social">
-        <ul>
-          <li><a href="https://github.com/johnberberich" target="_blank"><i class="fa fa-github"></i></a></li>
-          <li><a href="http://www.linkedin.com/in/johnberberich" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-          <li><a href="https://twitter.com/johnberberich" target="_blank"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="mailto:jberberich@gmail.com"><i class="fa fa-envelope"></i></a></li>
-        </ul>
-      </div>
+  <div class="sidebar three columns offset-by-one">
+    <div class="photo">
+      <a href="/">
+        <img src="/img/avatar.jpg" alt="John's face">
+      </a>
     </div>
-
-    <div class="nine columns">
-      {% if page.header %}
-      <header>
-        <h1>{{ page.title }}</h1>
-      </header>
-      {% endif %}
-      {{ content }}
+    <div class="tagline">
+      Hi, I'm John.
     </div>
-
+    <div class="links">
+      <ul>
+        <li><a href="/">About</a></li>
+        <li><a href="/resume/">Resume</a></li>
+        <li><a href="/projects/">Projects</a></li>
+      </ul>
+    </div>
+    <div class="social">
+      <ul>
+        <li><a href="https://github.com/johnberberich" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a href="http://www.linkedin.com/in/johnberberich" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="https://twitter.com/johnberberich" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="mailto:jberberich@gmail.com"><i class="fa fa-envelope"></i></a></li>
+      </ul>
+    </div>
   </div>
+
+  <div class="seven columns">
+    {% if page.header %}
+    <header>
+      <h1>{{ page.title }}</h1>
+    </header>
+    {% endif %}
+    {{ content }}
+  </div>
+
 </div>

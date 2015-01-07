@@ -1,8 +1,5 @@
 var BerbSoft = BerbSoft || {};
 
-/****************/
-/***** GRID *****/
-/****************/
 BerbSoft.Grid = function(width, height, clearVal) {
   this.width = width;
   this.height = height;
