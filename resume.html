@@ -43,7 +43,7 @@ title:  Resume
             {{ job.position }} @ <a href="{{ job.website }}">{{ job.company }}</a>
           </h3>
           <h4 class="job-duration">
-            {{ job.started_on }} - {{ job.ended_on | default: "Present" }}
+            {{ job.started_on | date: '%B %Y' }} - {{ job.ended_on | default: "Present" | date: '%B %Y' }}
           </h4>
         </header>
         <div class="accopmlishments">

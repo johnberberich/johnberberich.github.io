@@ -1,21 +1,29 @@
+---
 name: John Berberich
 label: Software Engineer
 email: jberberich@gmail.com
 biography:
-    - I am a full-stack, polyglot web developer with over ten years of experience programming, designing, and debugging software. On my recent projects, I've enjoyed learning PHP and Symfony2 on the fly, and I typically use Python on my personal projects The remainder of my professional work has been in C#.
-    - I'm seeking a senior role on a web development team where I can contribute code on both the front- and back-ends.
+    - >
+        I am a full-stack, polyglot web developer with over ten years of
+        experience programming, designing, and debugging software. On my recent
+        projects, I've enjoyed learning PHP and Symfony on the fly, and I
+        typically use Python on my personal projects The remainder of my
+        professional work has been in C#.
+    - >
+        I'm seeking a senior role on a web development team where I can
+        contribute code on both the front- and back-ends.
 
 skills:
     - type: Languages
-      items: [PHP 5, JavaScript, Python, C#]
+      items: [PHP, JavaScript, Python, C#]
     - type: Frameworks
-      items: [Symfony 2, jQuery, ASP.NET, SharePoint]
+      items: [Symfony, Backbone, jQuery, Bootstrap, Laravel, ASP.NET]
     - type: Databases
-      items: [MySQL, SQL Server]
-    - type: Tools
-      items: [Git, Vagrant, Jenkins, Docker]
+      items: [MySQL, MSSQL]
+    - type: Tools & Technologies
+      items: [Git, Vagrant, AWS, Jenkins, Docker, Jekyll, GitHub, Bitbucket, JIRA]
     - type: CMSs
-      items: [Drupal, Wordpress, Umbraco]
+      items: [Drupal, Wordpress]
 
 work:
     - company: KnowledgeWorks
@@ -27,55 +35,55 @@ work:
       accomplishments:
         - Rewrote a key HTML table of student grades in a learning management system to use jQuery DataTables and Twig, and refactored back-end code to be more maintainable and less coupled to Drupal.
         - Wrote a report-building application in Symfony 2 that was designed to ease the production of reports for leaders of competency-based learning programs.
-      technologies: [PHP 5, Symfony 2, JavaScript, jQuery, Drupal 6, MySQL, Git, Linux]
+      technologies: [PHP, Symfony, JavaScript, Backbone, jQuery, Drupal, MySQL, Git, Linux, AWS]
 
     - company: Kroger
       location: Cincinnati, OH
       website: "https://www.kroger.com/"
       position: Software Engineer
-      started_on: 2007
-      ended_on: 2012
+      started_on: 2007-08-01  # Day of month is not accurate.
+      ended_on: 2012-06-01  # Day of month is not accurate.
       accomplishments:
         - Implemented an ASP.NET base page to pull layout and content from SharePoint.
         - Collaborated on the design and later maintained a SharePoint application that facilitated the sharing of content between distinct sites.
         - Coordinated code releases, maintained VCS, and created deployment packages.
         - Wrote a SharePoint timer job to synchronize video metadata from external content system.
         - Wrote a PowerShell script to automate the creation and distribution of PFX certificates.
-      technologies: [C#, ASP.NET, SharePoint, SQL Server, PowerShell]
+      technologies: [C#, ASP.NET, SharePoint, MSSQL, PowerShell]
 
     - company: FormShare
       location: Dayton, OH
       website: "http://formshare.com/"
       position: Software Developer
-      started_on: 2007
-      ended_on: 2007
+      started_on: 2007-03-01  # Day of month is not accurate.
+      ended_on: 2007-08-01  # Day of month is not accurate.
       accomplishments:
         - Worked in a small team to develop a BPA web application using ASP.NET.
         - Built data communication and exchange services using .NET Web Services.
         - Diagnosed and fixed performance problems in a dynamic form builder application written in ASP.NET.
-      technologies: [C#, ASP.NET, JavaScript, SQL Server, Windows Services, Web Services]
+      technologies: [C#, ASP.NET, JavaScript, MSSQL, Windows Services, Web Services]
 
     - company: Com-Net Software
       location: Dayton, OH
       website: "http://comnetsoftware.com/"
       position: Software Developer
-      started_on: 2005
-      ended_on: 2007
+      started_on: 2005-08-01  # Day of month is not accurate.
+      ended_on: 2007-03-01  # Day of month is not accurate.
       accomplishments:
         - Developed a touch-screen kiosk using WinForms.
         - Wrote a flight tracking web site, email notification service, and data import service; and worked with the airport through design, testing, and implementation.
         - Built a WinForms application for managing events in a hotel presentation application, and collaborated with team in the design of the flight, news, and weather data import services and product registration.
-      technologies: [C#, WinForms, ASP, VBScript, SQL Server, XML, Web Services, Windows Services]
+      technologies: [C#, WinForms, ASP, VBScript, MSSQL, XML, Web Services, Windows Services]
 
     - company: United Medical Resources
       location: Cincinnati, OH
       website: "https://www.umr.com/"
       position: Sr. Programmer Analyst
-      started_on: 2002
-      ended_on: 2005
+      started_on: 2002-11-01  # Day of month is not accurate.
+      ended_on: 2005-08-01  # Day of month is not accurate.
       accomplishments:
         - Wrote an ASP web application used by health care managers to track high-risk patients and to follow their compliance through a managed health plan.
-      technologies: [C#, VB6, ASP, VBScript, SQL Server, XML, Web Services]
+      technologies: [C#, VB6, ASP, VBScript, MSSQL, XML, Web Services]
 
 education:
     - school: Wright State University
