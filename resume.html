@@ -34,7 +34,7 @@ title:  Resume
   </section>
 
   <section id="experience">
-    <h2>Work</h2>
+    <h2>Experience</h2>
     <div>
     {% for job in resume.work %}
       <section class="job">
@@ -43,22 +43,21 @@ title:  Resume
             {{ job.position }} @ <a href="{{ job.website }}">{{ job.company }}</a>
           </h3>
           <h4 class="job-duration">
-            {{ job.started_on | date: '%B %Y' }} - {{ job.ended_on | default: "Present" | date: '%B %Y' }}
+            {{ job.started_on | date: "%B %Y" }} - {{ job.ended_on | date: "%B %Y" }}
           </h4>
         </header>
-        <div class="accopmlishments">
+        <div>
+          <ul class="skill-list">
+          {% for tech in job.technologies %}
+            <li>{{ tech }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="accomplishments">
           <strong>Accomplishments</strong>
           <ul>
           {% for accomplishment in job.accomplishments %}
             <li>{{ accomplishment }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-        <div>
-          <strong>Technologies</strong>
-          <ul class="skill-list">
-          {% for tech in job.technologies %}
-            <li>{{ tech }}</li>
           {% endfor %}
           </ul>
         </div>
