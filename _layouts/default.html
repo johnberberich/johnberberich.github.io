@@ -1,42 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>
-    {% if page.title %}
-      {{ page.title }} &ndash;
-    {% endif %}
-    {{ site.title }}
-  </title>
-  <meta name="description" content="{{ site.description }}">
-  <meta name="author" content="{{ site.author.name }}">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include head.html %}
 
-  {% include google_site_verification.html %}
+  <body>
+    <main class="container">
+      {{ content }}
+    </main>
 
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <footer class="container">
+      <p>
+        Powered by <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://getskeleton.com/">Skeleton</a>.
+        Hosted on <a href="https://github.com/johnberberich/johnberberich.github.io">GitHub</a>.
+      </p>
+      <p>&copy; 2017 John Berberich</p>
+    </footer>
 
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/skeleton.css">
-  <link rel="stylesheet" href="/css/main.css">
-
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-</head>
-<body>
-  <main class="container">
-    {{ content }}
-  </main>
-
-  <footer class="container">
-    <p>
-      Powered by <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://getskeleton.com/">Skeleton</a>.
-      Hosted on <a href="https://github.com/johnberberich/johnberberich.github.io">GitHub</a>.
-    </p>
-    <p>&copy; 2017 John Berberich</p>
-  </footer>
-
-  {% include google_analytics.html %}
-</body>
+    {% include google_analytics.html %}
+  </body>
 </html>
