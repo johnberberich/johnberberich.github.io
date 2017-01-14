@@ -22,7 +22,7 @@ exclude: [
 
 # Dependencies
 markdown:    rdiscount
-highlighter: pygments
+# highlighter: pygments
 
 # Permalinks
 permalink:           pretty
