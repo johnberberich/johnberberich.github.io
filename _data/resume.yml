@@ -55,7 +55,7 @@ work:
 
     - company: FormShare
       location: Dayton, OH
-      website: "http://formshare.com/"
+      # website: "http://formshare.com/"
       position: Software Developer
       started_on: 2007-03-01  # Day of month is not accurate.
       ended_on: 2007-08-01  # Day of month is not accurate.

@@ -40,7 +40,7 @@ title:  Resume
       <section class="job">
         <header>
           <h3>
-            {{ job.position }} @ <a href="{{ job.website }}">{{ job.company }}</a>
+            {{ job.position }} @ {% if job.website %}<a href="{{ job.website }}">{{ job.company }}</a>{% else %} {{ job.company }}{% endif %}
           </h3>
           <h4 class="job-duration">
             {{ job.started_on | date: "%B %Y" }} - {{ job.ended_on | date: "%B %Y" }}
