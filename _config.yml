@@ -11,14 +11,13 @@ author:
   name:  John Berberich
   email: jberberich@gmail.com
 
-exclude: [
-  'CNAME',
-  'README.md',
-  'Gemfile',
-  'Gemfile.lock',
-  '*.sublime-*',
-  'less/'
-]
+exclude:
+  - CNAME
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - Rakefile
+  - vendor
 
 # Dependencies
 markdown:    rdiscount
