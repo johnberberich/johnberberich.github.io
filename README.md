@@ -1,9 +1,3 @@
-My personal website.
+# johnberberich.com
 
-Goals:
-- For every directory, all non-index.html files will also be accessible through a subdirectory named after the file and containing a index.html file with the same content.  For instance, for the about.html file, we will also generate /about/index.html.
-
-Dependencies:
-- Jinja2, for templating
-- Werkzeug, for routing in dynamic mode
-
+[![Build Status](https://travis-ci.org/johnberberich/johnberberich.github.io.svg?branch=master)](https://travis-ci.org/johnberberich/johnberberich.github.io)
